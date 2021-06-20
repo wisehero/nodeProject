@@ -1,0 +1,10 @@
+express.json()
+express.raw()
+express.Router()
+express.static()
+express.text()
+express.urlencoded()
+
+cors -> 교차 출처 리소스 공유 
+helmet -> 보안
+morgan -> http request 로그 미들웨어

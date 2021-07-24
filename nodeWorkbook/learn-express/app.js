@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 const path = require("path");
 
 dotenv.config();
+
 const app = express();
 app.set("port", process.env.PORT || 3000);
 
@@ -32,6 +33,8 @@ app.use(
     name: "session-cookie",
   })
 );
+const indexRouter = require("./routes");
+const userRouter = require("./routes/user");
 
 const multer = require("multer");
 const fs = require("fs");
@@ -77,6 +80,13 @@ app.get(
     throw new Error("에러는 에러 처리 미들웨어로 갑니다.");
   }
 );
+
+app.use("/", indexRouter);
+app.use("/user", userRouter);
+
+app.use((req, res, next) => {
+  res.status(404).send("Not found");
+});
 
 app.use((err, req, res, next) => {
   console.error(err);

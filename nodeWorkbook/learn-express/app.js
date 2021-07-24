@@ -4,11 +4,18 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const dotenv = require("dotenv");
 const path = require("path");
+const nunjucks = require("nunjucks");
 
 dotenv.config();
 
 const app = express();
 app.set("port", process.env.PORT || 3000);
+app.set("view engine", "html");
+
+nunjucks.configure("views", {
+  express: app,
+  watch: true,
+});
 
 // 로그를 나오게 하는 미들웨어
 app.use(morgan("dev"));

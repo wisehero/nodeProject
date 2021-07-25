@@ -1,11 +1,13 @@
 import express from "express";
+import logger from "morgan";
+import morgan from "morgan";
 
 const PORT = 8080;
 
 const app = express();
+const logger = morgan("dev");
 
-const handleListening = () => {
-  console.log(`✅ Server listenting on port http://localhost:${PORT} 🚀`);
-};
+app.use(logger);
+app.use("/", rootRouter);
 
 app.listen(PORT, handleListening);

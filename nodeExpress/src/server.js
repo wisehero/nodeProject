@@ -9,5 +9,6 @@ const logger = morgan("dev");
 
 app.use(logger);
 app.use("/", rootRouter);
+app.use("/users", userRouter);
 
 app.listen(PORT, handleListening);
